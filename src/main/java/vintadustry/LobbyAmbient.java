@@ -21,66 +21,70 @@ public class LobbyAmbient {
     static Sound sound;
     static boolean tried;
     static boolean active;
+    static boolean starting;
+    static int retryCount;
 
     public static void start() {
-        block16: {
-            if (Vars.headless) {
-                return;
-            }
-            try {
-                if (!tried) {
-                    tried = true;
-                    music = Vars.tree.loadMusic("vd-lobby-ambient");
-                    if (music == null) {
-                        sound = Vars.tree.loadSound("vd-lobby-ambient");
-                    } else {
-                        music.setLooping(true);
-                        music.setVolume(0.55f);
-                    }
-                }
-                try {
-                    if (Vars.control != null && Vars.control.sound != null) {
-                        Vars.control.sound.stop();
-                    }
-                }
-                catch (Throwable throwable) {
-                    // empty catch block
-                }
-                if (music != null) {
-                    try {
-                        if (Vars.control != null && Vars.control.sound != null) {
-                            Vars.control.sound.playMusic(music, true);
-                            active = true;
-                            return;
-                        }
-                    }
-                    catch (Throwable throwable) {
-                        // empty catch block
-                    }
-                    if (!music.isPlaying()) {
-                        music.setLooping(true);
-                        music.setVolume(0.55f);
-                        music.play();
-                    }
-                    active = true;
-                    break block16;
-                }
-                if (sound != null) {
-                    if (sound.countPlaying() == 0) {
-                        sound.loop(0.55f);
-                    }
-                    active = true;
-                }
-            }
-            catch (Throwable throwable) {
-                Log.err((String)"Lobby ambient start failed", (Throwable)throwable);
-            }
+        if (Vars.headless) {
+            return;
         }
+        if (active || starting) {
+            return; // Already playing or starting
+        }
+        starting = true;
+        
+        try {
+            if (!tried) {
+                tried = true;
+                music = Vars.tree.loadMusic("vd-lobby-ambient");
+                if (music == null) {
+                    sound = Vars.tree.loadSound("vd-lobby-ambient");
+                } else {
+                    music.setLooping(true);
+                    music.setVolume(0.55f);
+                }
+            }
+            
+            // Stop any existing music
+            try {
+                if (Vars.control != null && Vars.control.sound != null) {
+                    // Try to stop via control if available
+                    Object soundControl = Vars.control.sound;
+                    // Use reflection to call stop if available
+                    try {
+                        soundControl.getClass().getMethod("stop").invoke(soundControl);
+                    } catch (Throwable ignored) {}
+                }
+            } catch (Throwable ignored) {}
+            
+            if (music != null) {
+                playMusicDirect();
+            } else if (sound != null) {
+                if (sound.countPlaying() == 0) {
+                    sound.loop(0.55f);
+                }
+                active = true;
+            }
+        } catch (Throwable throwable) {
+            Log.err("Lobby ambient start failed", throwable);
+        } finally {
+            starting = false;
+        }
+    }
+    
+    private static void playMusicDirect() {
+        if (music != null && !music.isPlaying()) {
+            music.setLooping(true);
+            music.setVolume(0.55f);
+            music.play();
+        }
+        active = true;
     }
 
     public static void stop() {
         try {
             active = false;
+            starting = false;
             if (music != null) {
                 music.stop();
             }
@@ -88,15 +92,15 @@ public class LobbyAmbient {
                 sound.stop();
             }
             try {
-                if (Vars.control != null && Vars.control.sound != null && Vars.control.sound.getCurrent() == music) {
-                    Vars.control.sound.stop();
+                if (Vars.control != null && Vars.control.sound != null) {
+                    // Try to stop via control if available
+                    Object soundControl = Vars.control.sound;
+                    try {
+                        soundControl.getClass().getMethod("stop").invoke(soundControl);
+                    } catch (Throwable ignored) {}
                 }
-            }
-            catch (Throwable throwable) {}
-        }
-        catch (Throwable throwable) {
-            // empty catch block
-        }
+            } catch (Throwable ignored) {}
+        } catch (Throwable ignored) {}
     }
 
     public static void sync(boolean bl) {
