@@ -1,12 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  arc.math.geom.Position
- *  arc.util.Time
- *  arc.util.Tmp
- *  mindustry.gen.Unit
- */
 package vintadustry;
 
 import arc.math.geom.Position;

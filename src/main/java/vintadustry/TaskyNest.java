@@ -1,24 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  arc.math.geom.Position
- *  arc.struct.ObjectFloatMap
- *  arc.struct.ObjectMap
- *  arc.struct.Seq
- *  arc.util.Time
- *  mindustry.Vars
- *  mindustry.content.Blocks
- *  mindustry.game.Team
- *  mindustry.gen.Call
- *  mindustry.gen.Groups
- *  mindustry.gen.Player
- *  mindustry.world.Block
- *  mindustry.world.Tile
- *  mindustry.world.blocks.storage.CoreBlock
- *  mindustry.world.blocks.storage.CoreBlock$CoreBuild
- *  mindustry.world.meta.BlockFlag
- */
 package vintadustry;
 
 import arc.math.geom.Position;

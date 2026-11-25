@@ -1,15 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  arc.util.io.Reads
- *  arc.util.io.Writes
- *  mindustry.Vars
- *  mindustry.gen.Building
- *  mindustry.gen.Player
- *  mindustry.net.NetConnection
- *  mindustry.net.Packet
- */
 package vintadustry;
 
 import arc.util.io.Reads;

@@ -1,22 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  arc.Core
- *  arc.graphics.Color
- *  arc.graphics.g2d.Draw
- *  arc.graphics.g2d.Fill
- *  arc.graphics.g2d.Lines
- *  arc.graphics.g2d.TextureAtlas$AtlasRegion
- *  arc.graphics.g2d.TextureRegion
- *  arc.math.Angles
- *  arc.math.Interp
- *  arc.math.Mathf
- *  arc.util.Time
- *  mindustry.Vars
- *  mindustry.entities.Effect
- *  mindustry.gen.Building
- */
 package vintadustry;
 
 import arc.Core;

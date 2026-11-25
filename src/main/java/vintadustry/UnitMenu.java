@@ -1,32 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  arc.Core
- *  arc.Events
- *  arc.graphics.Color
- *  arc.graphics.g2d.Draw
- *  arc.graphics.g2d.TextureRegion
- *  arc.math.Mathf
- *  arc.math.geom.Position
- *  arc.math.geom.Vec2
- *  arc.scene.Element
- *  arc.scene.event.Touchable
- *  arc.scene.style.Drawable
- *  arc.scene.ui.Label
- *  arc.scene.ui.layout.Scl
- *  arc.scene.ui.layout.Table
- *  mindustry.Vars
- *  mindustry.game.EventType$Trigger
- *  mindustry.game.EventType$WorldLoadEvent
- *  mindustry.gen.Groups
- *  mindustry.gen.Icon
- *  mindustry.gen.Unit
- *  mindustry.graphics.Pal
- *  mindustry.type.Item
- *  mindustry.type.ItemStack
- *  mindustry.ui.Styles
- */
 package vintadustry;
 
 import arc.Core;

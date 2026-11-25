@@ -1,21 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  arc.math.geom.Position
- *  arc.util.io.Reads
- *  arc.util.io.Writes
- *  mindustry.content.Fx
- *  mindustry.gen.Call
- *  mindustry.gen.Groups
- *  mindustry.gen.Player
- *  mindustry.gen.Unit
- *  mindustry.graphics.Pal
- *  mindustry.net.NetConnection
- *  mindustry.net.Packet
- *  mindustry.type.Item
- *  mindustry.type.ItemStack
- */
 package vintadustry;
 
 import arc.math.geom.Position;

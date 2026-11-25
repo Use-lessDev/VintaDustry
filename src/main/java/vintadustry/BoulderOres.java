@@ -1,18 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  arc.ApplicationListener
- *  arc.Core
- *  arc.files.Fi
- *  arc.util.Time
- *  mindustry.Vars
- *  mindustry.content.Blocks
- *  mindustry.ctype.ContentType
- *  mindustry.world.Block
- *  mindustry.world.Tile
- *  mindustry.world.blocks.environment.Floor
- */
 package vintadustry;
 
 import arc.ApplicationListener;

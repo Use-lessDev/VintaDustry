@@ -1,12 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  arc.Core
- *  arc.graphics.g2d.TextureAtlas$AtlasRegion
- *  arc.graphics.g2d.TextureRegion
- *  arc.util.Log
- */
 package vintadustry;
 
 import arc.Core;

@@ -1,19 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  arc.Core
- *  arc.scene.style.Drawable
- *  arc.scene.ui.TextButton
- *  arc.scene.ui.TextButton$TextButtonStyle
- *  arc.scene.ui.layout.Cell
- *  arc.scene.ui.layout.Table
- *  arc.struct.Seq
- *  arc.util.Log
- *  mindustry.Vars
- *  mindustry.gen.Icon
- *  mindustry.ui.fragments.MenuFragment$MenuButton
- */
 package vintadustry;
 
 import arc.Core;

@@ -1,13 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  arc.Core
- *  arc.audio.Music
- *  arc.audio.Sound
- *  arc.util.Log
- *  mindustry.Vars
- */
 package vintadustry;
 
 import arc.Core;
@@ -22,37 +12,40 @@ public class LobbyAmbient {
     static boolean tried;
     static boolean active;
     static boolean starting;
-    static int retryCount;
 
     public static void start() {
         if (Vars.headless) {
             return;
         }
         if (active || starting) {
-            return; // Already playing or starting
+            Log.debug("[LobbyAmbient] Already playing or starting, skipping");
+            return;
         }
         starting = true;
+        Log.info("[LobbyAmbient] Starting lobby ambient music...");
         
         try {
             if (!tried) {
                 tried = true;
+                Log.debug("[LobbyAmbient] Loading music asset: vd-lobby-ambient");
                 music = Vars.tree.loadMusic("vd-lobby-ambient");
                 if (music == null) {
+                    Log.warn("[LobbyAmbient] Music not found, trying sound fallback");
                     sound = Vars.tree.loadSound("vd-lobby-ambient");
                 } else {
                     music.setLooping(true);
                     music.setVolume(0.55f);
+                    Log.debug("[LobbyAmbient] Music loaded successfully, volume=0.55, looping=true");
                 }
             }
             
             // Stop any existing music
             try {
                 if (Vars.control != null && Vars.control.sound != null) {
-                    // Try to stop via control if available
                     Object soundControl = Vars.control.sound;
-                    // Use reflection to call stop if available
                     try {
                         soundControl.getClass().getMethod("stop").invoke(soundControl);
+                        Log.debug("[LobbyAmbient] Stopped existing music via SoundControl");
                     } catch (Throwable ignored) {}
                 }
             } catch (Throwable ignored) {}
@@ -64,9 +57,10 @@ public class LobbyAmbient {
                     sound.loop(0.55f);
                 }
                 active = true;
+                Log.info("[LobbyAmbient] Started lobby ambient via Sound fallback");
             }
         } catch (Throwable throwable) {
-            Log.err("Lobby ambient start failed", throwable);
+            Log.err("[LobbyAmbient] Failed to start lobby ambient", throwable);
         } finally {
             starting = false;
         }
@@ -77,6 +71,11 @@ public class LobbyAmbient {
             music.setLooping(true);
             music.setVolume(0.55f);
             music.play();
+            Log.info("[LobbyAmbient] Playing lobby music directly (Music.play())");
+        } else if (music != null && music.isPlaying()) {
+            Log.debug("[LobbyAmbient] Music already playing");
+        } else {
+            Log.warn("[LobbyAmbient] playMusicDirect called but music is null");
         }
         active = true;
     }
@@ -87,16 +86,18 @@ public class LobbyAmbient {
             starting = false;
             if (music != null) {
                 music.stop();
+                Log.debug("[LobbyAmbient] Music stopped");
             }
             if (sound != null) {
                 sound.stop();
+                Log.debug("[LobbyAmbient] Sound stopped");
             }
             try {
                 if (Vars.control != null && Vars.control.sound != null) {
-                    // Try to stop via control if available
                     Object soundControl = Vars.control.sound;
                     try {
                         soundControl.getClass().getMethod("stop").invoke(soundControl);
+                        Log.debug("[LobbyAmbient] Stopped via SoundControl reflection");
                     } catch (Throwable ignored) {}
                 }
             } catch (Throwable ignored) {}

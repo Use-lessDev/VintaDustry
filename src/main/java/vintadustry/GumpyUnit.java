@@ -1,24 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  arc.math.Angles
- *  arc.math.Mathf
- *  arc.math.geom.Position
- *  arc.util.Time
- *  arc.util.io.Reads
- *  arc.util.io.Writes
- *  mindustry.Vars
- *  mindustry.content.Fx
- *  mindustry.entities.Units
- *  mindustry.game.Team
- *  mindustry.gen.Building
- *  mindustry.gen.Call
- *  mindustry.gen.Groups
- *  mindustry.gen.Player
- *  mindustry.gen.Unit
- *  mindustry.type.Item
- */
 package vintadustry;
 
 import arc.math.Angles;

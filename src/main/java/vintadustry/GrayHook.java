@@ -1,10 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  arc.graphics.Color
- *  mindustry.type.Item
- */
 package vintadustry;
 
 import arc.graphics.Color;

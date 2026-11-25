@@ -1,12 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  arc.math.Mathf
- *  arc.math.geom.Position
- *  arc.util.Tmp
- *  mindustry.gen.Unit
- */
 package vintadustry;
 
 import arc.math.Mathf;

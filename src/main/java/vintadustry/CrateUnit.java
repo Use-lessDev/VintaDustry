@@ -1,19 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  arc.math.Mathf
- *  arc.util.io.Reads
- *  arc.util.io.Writes
- *  mindustry.Vars
- *  mindustry.entities.EntityCollisions
- *  mindustry.entities.EntityCollisions$SolidPred
- *  mindustry.entities.Units
- *  mindustry.gen.Groups
- *  mindustry.gen.Unit
- *  mindustry.gen.UnitEntity
- *  mindustry.type.ItemStack
- */
 package vintadustry;
 
 import arc.math.Mathf;
