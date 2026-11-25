@@ -164,6 +164,8 @@ public class MenuLobby {
             if (MenuLobby.key() != lastKey) {
                 MenuLobby.layout();
             }
+            // Ensure lobby music keeps playing and stop any default menu music
+            LobbyAmbient.ensurePlaying();
         }
         catch (Throwable throwable) {
             applied = false;
@@ -274,13 +276,13 @@ public class MenuLobby {
             if (menuButton == null) continue;
             MenuFragment.MenuButton menuButton2 = menuButton;
             boolean bl = menuButton.submenu != null && menuButton.submenu.any();
-            boolean bl2 = open.contains((Object)menuButton, true);
+            boolean bl2 = open.contains(menuButton, true);
             Cell cell = LobbyFix.button(table, menuButton.text, menuButton.icon, Styles.flatToggleMenut, () -> {
                 if (bl) {
                     if (bl2) {
-                        open.remove((Object)menuButton2, true);
+                        open.remove(menuButton2, true);
                     } else {
-                        open.add((Object)menuButton2);
+                        open.add(menuButton2);
                     }
                     Core.app.post(MenuLobby::layout);
                 } else if (menuButton2.runnable != null) {

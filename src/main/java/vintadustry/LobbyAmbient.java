@@ -79,6 +79,28 @@ public class LobbyAmbient {
         }
         active = true;
     }
+    
+    public static void ensurePlaying() {
+        if (!active || !tried) {
+            return;
+        }
+        if (music != null && !music.isPlaying()) {
+            Log.warn("[LobbyAmbient] Music stopped unexpectedly, restarting...");
+            playMusicDirect();
+        }
+        // Check and stop any other music that might have started (Mindustry default menu music)
+        if (Vars.control != null && Vars.control.sound != null) {
+            Object soundControl = Vars.control.sound;
+            try {
+                Object currentMusic = soundControl.getClass().getMethod("getCurrent").invoke(soundControl);
+                if (currentMusic != null && currentMusic != music) {
+                    Log.warn("[LobbyAmbient] Different music detected, stopping it and restarting ours");
+                    soundControl.getClass().getMethod("stop").invoke(soundControl);
+                    playMusicDirect();
+                }
+            } catch (Throwable ignored) {}
+        }
+    }
 
     public static void stop() {
         try {
