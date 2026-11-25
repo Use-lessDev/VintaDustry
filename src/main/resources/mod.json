@@ -1,0 +1,10 @@
+{
+  "name": "vintadustry",
+  "displayName": "VintaDustry",
+  "author": "morajoe",
+  "description": "Copia do Gamma (placeholder) que carrega 2 tipos diferentes de recurso ao mesmo tempo.",
+  "version": "1.1",
+  "minGameVersion": 154,
+  "main": "vintadustry.TestMod",
+  "java": true
+}

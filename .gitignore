@@ -1,0 +1,46 @@
+# Build outputs
+build/
+.gradle/
+*.jar
+*.war
+*.ear
+*.class
+*.dex
+
+# IDE files
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Gradle
+.gradle/
+build/
+
+# Local config
+local.properties
+gradle.properties.local
+
+# Logs
+*.log
+
+# Temp
+*.tmp
+*.temp
+.tmp/
+temp/
+
+# Harness/Android specific
+.harness/
+*.apk
+*.aab
+
+# Mod specific
+*.mod.jar

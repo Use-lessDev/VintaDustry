@@ -1,0 +1,81 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.1.0'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+group = 'vintadustry'
+version = '1.1'
+
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+    maven { url 'https://maven.arctype.net' }
+    maven { url 'https://repo.mindustrygame.com' }
+}
+
+dependencies {
+    // Mindustry dependencies - using JitPack
+    implementation 'com.github.Anuken:Mindustry:v154'
+    
+    // Arc graphics library
+    implementation 'com.github.Anuken:Arc:v154'
+    
+    // For JSON serialization if needed
+    implementation 'com.google.code.gson:gson:2.10.1'
+}
+
+jar {
+    manifest {
+        attributes(
+            'Main-Class': 'vintadustry.TestMod',
+            'Mod-Name': 'VintaDustry',
+            'Mod-Version': project.version,
+            'Mod-Author': 'morajoe',
+            'Mod-MinGameVersion': 154,
+            'Mod-Java': true
+        )
+    }
+    
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    
+    // Include resources
+    from('src/main/resources') {
+        include '**/*'
+    }
+    
+    // Exclude unwanted files
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'
+}
+
+task copyToMindustryMods(type: Copy) {
+    def modDir = System.getProperty('user.home') + '/Mindustry/mods'
+    from jar
+    into modDir
+    rename { String fileName ->
+        "VintaDustry-${project.version}.jar"
+    }
+}
+
+task deployMod(dependsOn: ['jar', 'copyToMindustryMods']) {
+    doLast {
+        println "Deployed to $modDir"
+    }
+}
+
+// Clean task
+clean {
+    delete 'build'
+}
